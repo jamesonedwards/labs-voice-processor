@@ -1,0 +1,7 @@
+*.pyc
+.project
+.pydevproject
+settings.py
+test-audio-files
+www/media/voice_files
+.metadata

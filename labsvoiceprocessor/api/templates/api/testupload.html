@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Minimal Django File Upload Example</title>   
+    </head>
+    <body>
+    <!-- List of uploaded documents -->
+    {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li><a href="{{ message.altered_file }}">{{ message.altered_file }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No messages.</p>
+    {% endif %}
+
+        <!-- Upload form. Note enctype attribute! -->
+        <form action="{% url testupload %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>{{ form.non_field_errors }}</p>
+            <p>{{ form.original_file.label_tag }} {{ form.original_file.help_text }}</p>
+            <p>
+                {{ form.original_file.errors }}
+                {{ form.original_file }}
+            </p>
+            <p>{{ form.creepify.label_tag }} {{ form.creepify.help_text }}</p>
+            <p>
+                {{ form.creepify.errors }}
+                {{ form.creepify }}
+            </p>
+            <p><input type="submit" value="Upload" /></p>
+        </form>
+    </body>
+</html> 
